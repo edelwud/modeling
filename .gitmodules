@@ -1,0 +1,3 @@
+[submodule "random/cmake"]
+	path = random/cmake
+	url = http://github.com/edelwud/cmake-addon
