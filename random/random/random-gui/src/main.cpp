@@ -1,10 +1,11 @@
 #define MAHI_GUI_NO_CONSOLE
 #define MAHI_GUI_USE_DISCRETE_GPU
 
-#include <graph.h>
+#include <histogram.h>
 
 int main() {
-  GraphBars demo;
-  demo.run();
-  return 0;
+    RandomHistogram histogram;
+    histogram.SetRandomParameters(126398, 911201, 1, 1000000, 20, 0, 1);
+    histogram.run();
+    return 0;
 }
