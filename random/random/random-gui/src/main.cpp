@@ -4,8 +4,8 @@
 #include <histogram.h>
 
 int main() {
-  RandomHistogram histogram;
-  histogram.SetRandomParameters(126398, 911201, 1, 1000000, 20, 0, 1);
-  histogram.run();
-  return 0;
+    RandomHistogram histogram;
+    histogram.SetRandomParameters(126398, 911201, 1, 1000000, 20, 0, 1);
+    histogram.run();
+    return 0;
 }
