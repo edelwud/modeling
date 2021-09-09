@@ -4,5 +4,5 @@
 
 class Random {
 public:
-    static std::vector<double> GenerateSequence(int a, int m, int r0, int length);
+  static std::vector<double> GenerateSequence(int a, int m, int r0, int length);
 };
