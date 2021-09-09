@@ -3,13 +3,13 @@
 #include <numeric>
 #include <cmath>
 
-double Utils::CalculateSequenceMean(std::vector<double> &sequence) {
+double Rand::Utils::CalculateSequenceMean(std::vector<double> &sequence) {
     double sum = std::accumulate(sequence.begin(), sequence.end(), 0.0);
     int size = sequence.size();
     return sum / size;
 }
 
-double Utils::CalculateSequenceDeviation(std::vector<double> &sequence, double mean) {
+double Rand::Utils::CalculateSequenceDeviation(std::vector<double> &sequence, double mean) {
     int length = sequence.size();
     std::vector<double> diff(length);
     std::transform(sequence.begin(), sequence.end(), diff.begin(), [mean](double x) {
@@ -19,12 +19,12 @@ double Utils::CalculateSequenceDeviation(std::vector<double> &sequence, double m
     return std::sqrt(diffSum / length);
 }
 
-double Utils::CalculateSequenceVariance(std::vector<double> &sequence, double mean) {
+double Rand::Utils::CalculateSequenceVariance(std::vector<double> &sequence, double mean) {
     auto deviation = CalculateSequenceDeviation(sequence, mean);
     return deviation * deviation;
 }
 
-double Utils::CalculateSequenceImplicitCriteria(std::vector<double>& sequence) {
+double Rand::Utils::CalculateSequenceImplicitCriteria(std::vector<double>& sequence) {
     double matchCriteria = 0;
     auto length = sequence.size();
     for (auto it = sequence.begin(); it != sequence.end(); it = std::next(it)) {
@@ -40,7 +40,7 @@ double Utils::CalculateSequenceImplicitCriteria(std::vector<double>& sequence) {
     return matchCriteria * 2 / length;
 }
 
-int Utils::CalculateSequencePeriod(std::vector<double> &sequence) {
+int Rand::Utils::CalculateSequencePeriod(std::vector<double> &sequence) {
     auto startElement = sequence.front();
     auto it = std::next(sequence.begin());
     for (int period = 1; it != sequence.end(); it = std::next(it), period++) {
@@ -51,7 +51,7 @@ int Utils::CalculateSequencePeriod(std::vector<double> &sequence) {
     return sequence.size();
 }
 
-int Utils::CalculateSequenceAperiodicInterval(std::vector<double> &sequence, int period) {
+int Rand::Utils::CalculateSequenceAperiodicInterval(std::vector<double> &sequence, int period) {
     auto aperiodicInterval = 0;
 
     while (sequence[aperiodicInterval] != sequence[aperiodicInterval + period])
