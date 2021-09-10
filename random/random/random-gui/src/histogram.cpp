@@ -1,6 +1,7 @@
 #include <histogram.h>
-#include <random/random.h>
 #include <utils.h>
+#include <random/random.h>
+#include <random/utils.h>
 
 #include <vector>
 
@@ -20,6 +21,9 @@ void RandomHistogram::update() {
     ImGui::InputInt("length", &sequenceLength);
     if (ImGui::Button("Apply"))
         SetRandomParameters(a, m, r0, sequenceLength, 20, 0, 1);
+
+    ImGui::Text("Period: %d;\nAperiodic interval: %d;\nExpected value: %lf;", period, aperiodicInterval, mean);
+
     ImGui::End();
 
     ImGui::BeginFixed(WINDOW_TITLE, {WINDOW_WIDTH / 4, 0},
@@ -45,4 +49,8 @@ void RandomHistogram::SetRandomParameters(int _a, int _m, int _r0,
     values =
         Histogram::Utils::GetXRandomValuesCount(sequence, length, from, to);
     maxY = *std::max_element(values.begin(), values.end());
+
+    mean = Rand::Utils::CalculateSequenceMean(sequence);
+    period = Rand::Utils::CalculateSequencePeriod(sequence);
+    aperiodicInterval = Rand::Utils::CalculateSequenceAperiodicInterval(sequence, period);
 }

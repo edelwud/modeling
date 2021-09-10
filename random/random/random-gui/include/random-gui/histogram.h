@@ -27,6 +27,14 @@ class RandomHistogram : public Application {
     int maxY;
     int length;
 
+    int period = 0,
+        aperiodicInterval = 0;
+
+    double mean = 0;
+
   private:
-    int a = 126398, m = 911201, r0 = 1, sequenceLength = 1000000;
+    int a = 126398,
+        m = 911201,
+        r0 = 1,
+        sequenceLength = 1000000;
 };
