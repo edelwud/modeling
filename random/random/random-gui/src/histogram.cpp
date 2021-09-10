@@ -12,30 +12,35 @@ RandomHistogram::RandomHistogram()
 }
 
 void RandomHistogram::update() {
-    ImGui::BeginFixed("Random parameters", {0, 0},
-                      {WINDOW_WIDTH / 4, WINDOW_HEIGHT});
+    ImGui::SetNextWindowPos(ImVec2(0,0), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(get_window_size(), ImGuiCond_Always);
+    ImGui::Begin("Histogram", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
+
+    ImGui::BeginChild("Random parameters", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.5f, -1));
     ImGui::Text("1000 pts ea. @ %.3f FPS", ImGui::GetIO().Framerate);
     ImGui::InputInt("A", &a);
     ImGui::InputInt("M", &m);
     ImGui::InputInt("r0", &r0);
     ImGui::InputInt("length", &sequenceLength);
     if (ImGui::Button("Apply"))
-        SetRandomParameters(a, m, r0, sequenceLength, 20, 0, 1);
-
+        SetRandomParameters(a, m, r0, sequenceLength, 50, 0, 1);
     ImGui::Text("Period: %d;\nAperiodic interval: %d;\nExpected value: %lf;", period, aperiodicInterval, mean);
+    ImGui::EndChild();
 
-    ImGui::End();
+    ImGui::SameLine();
 
-    ImGui::BeginFixed(WINDOW_TITLE, {WINDOW_WIDTH / 4, 0},
-                      {WINDOW_WIDTH * 3 / 4, WINDOW_HEIGHT - 100});
-
+    ImGui::BeginChild("Values", ImVec2(0, -1));
     ImPlot::SetNextPlotLimits(-1, length, 0, maxY);
     if (ImPlot::BeginPlot("##Histogram", nullptr, nullptr, ImVec2(-1, -1),
                           ImPlotFlags_NoChild)) {
         ImPlot::PlotBars("Level", positions.data(), values.data(), length,
                          0.5f);
+        for (auto x : positions) {
+            ImPlot::AnnotateClamped(x, 3, ImVec2(0,5), ImVec4(0.15f,0.15f,0.15f,1), "0.2");
+        }
         ImPlot::EndPlot();
     }
+    ImGui::EndChild();
     ImGui::End();
 }
 
