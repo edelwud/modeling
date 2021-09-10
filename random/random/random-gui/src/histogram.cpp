@@ -14,8 +14,8 @@ RandomHistogram::RandomHistogram()
 void RandomHistogram::update() {
     ImGui::SetNextWindowPos(ImVec2(0,0), ImGuiCond_Always);
     ImGui::SetNextWindowSize(get_window_size(), ImGuiCond_Always);
-    ImGui::Begin("Histogram", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
 
+    ImGui::Begin("Histogram", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
     ImGui::BeginChild("Random parameters", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.5f, -1));
     ImGui::Text("1000 pts ea. @ %.3f FPS", ImGui::GetIO().Framerate);
     ImGui::InputInt("A", &a);
@@ -30,17 +30,27 @@ void RandomHistogram::update() {
     ImGui::SameLine();
 
     ImGui::BeginChild("Values", ImVec2(0, -1));
-    ImPlot::SetNextPlotLimits(-1, length, 0, maxY);
-    if (ImPlot::BeginPlot("##Histogram", nullptr, nullptr, ImVec2(-1, -1),
-                          ImPlotFlags_NoChild)) {
-        ImPlot::PlotBars("Level", positions.data(), values.data(), length,
-                         0.5f);
-        for (auto x : positions) {
-            ImPlot::AnnotateClamped(x, 3, ImVec2(0,5), ImVec4(0.15f,0.15f,0.15f,1), "0.2");
+
+    if (ImGui::BeginTabBar("Plots")) {
+        if (ImGui::BeginTabItem("Histogram")) {
+            ImPlot::SetNextPlotLimits(-1, length, 0, maxY);
+            if (ImPlot::BeginPlot("##Histogram", nullptr, nullptr, ImVec2(-1, -1),
+                                  ImPlotFlags_NoChild)) {
+                ImPlot::PlotBars("Level", positions.data(), values.data(), length,
+                                 0.5f);
+                ImPlot::EndPlot();
+            }
+            ImGui::EndTabItem();
         }
-        ImPlot::EndPlot();
+        if (ImGui::BeginTabItem("Magnitude")) {
+            ImGui::Text("Second tab");
+            ImGui::EndTabItem();
+        }
+        ImGui::EndTabBar();
     }
+
     ImGui::EndChild();
+
     ImGui::End();
 }
 
