@@ -4,7 +4,8 @@
 #include <Mahi/Util.hpp>
 
 void GaussDistributionHistogram::RenderGaussHistogram() {
-    ImGui::Begin("Gauss");
-    ImGui::Text("Gauss distribution");
-    ImGui::End();
+    if (ImGui::BeginTabItem("Gauss")) {
+        ImGui::Text("Gauss distribution");
+        ImGui::EndTabItem();
+    }
 }

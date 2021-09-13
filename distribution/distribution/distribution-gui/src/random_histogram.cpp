@@ -4,7 +4,8 @@
 #include <Mahi/Util.hpp>
 
 void RandomDistributionHistogram::RenderRandomHistogram() {
-    ImGui::Begin("Random");
-    ImGui::Text("Random distribution");
-    ImGui::End();
+    if (ImGui::BeginTabItem("Random")) {
+        ImGui::Text("Random distribution");
+        ImGui::EndTabItem();
+    }
 }

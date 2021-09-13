@@ -4,7 +4,8 @@
 #include <Mahi/Util.hpp>
 
 void MaxTriangleDistributionHistogram::RenderMaxTriangleHistogram() {
-    ImGui::Begin("MaxTriangle");
-    ImGui::Text("MaxTriangle distribution");
-    ImGui::End();
+    if (ImGui::BeginTabItem("MaxTriangle")) {
+        ImGui::Text("MaxTriangle distribution");
+        ImGui::EndTabItem();
+    }
 }

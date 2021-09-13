@@ -7,12 +7,17 @@ DistributionHistogram::DistributionHistogram()
 };
 
 void DistributionHistogram::update() {
-    RenderExponentialHistogram();
-    RenderGammaHistogram();
-    RenderGaussHistogram();
-    RenderMaxTriangleHistogram();
-    RenderMinTriangleHistogram();
-    RenderRandomHistogram();
-    RenderSimpsonHistogram();
-    RenderUniformHistogram();
+    ImGui::SetNextWindowPos(ImVec2(0,0), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(get_window_size(), ImGuiCond_Always);
+    if (ImGui::BeginTabBar("Distribution")) {
+        RenderExponentialHistogram();
+        RenderGammaHistogram();
+        RenderGaussHistogram();
+        RenderMaxTriangleHistogram();
+        RenderMinTriangleHistogram();
+        RenderRandomHistogram();
+        RenderSimpsonHistogram();
+        RenderUniformHistogram();
+        ImGui::EndTabBar();
+    }
 }

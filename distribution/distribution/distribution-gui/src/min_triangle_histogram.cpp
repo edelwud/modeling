@@ -4,7 +4,8 @@
 #include <Mahi/Util.hpp>
 
 void MinTriangleDistributionHistogram::RenderMinTriangleHistogram() {
-    ImGui::Begin("MinTriangle");
-    ImGui::Text("MinTriangle distribution");
-    ImGui::End();
+    if (ImGui::BeginTabItem("MinTriangle")) {
+        ImGui::Text("MinTriangle distribution");
+        ImGui::EndTabItem();
+    }
 }

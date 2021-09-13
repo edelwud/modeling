@@ -4,7 +4,8 @@
 #include <Mahi/Util.hpp>
 
 void UniformDistributionHistogram::RenderUniformHistogram() {
-    ImGui::Begin("Uniform");
-    ImGui::Text("Uniform distribution");
-    ImGui::End();
+    if (ImGui::BeginTabItem("Uniform")) {
+        ImGui::Text("Uniform distribution");
+        ImGui::EndTabItem();
+    }
 }

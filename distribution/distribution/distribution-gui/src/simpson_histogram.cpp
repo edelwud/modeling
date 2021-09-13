@@ -4,7 +4,8 @@
 #include <Mahi/Util.hpp>
 
 void SimpsonDistributionHistogram::RenderSimpsonHistogram() {
-    ImGui::Begin("Simpson");
-    ImGui::Text("Simpson distribution");
-    ImGui::End();
+    if (ImGui::BeginTabItem("Simpson")) {
+        ImGui::Text("Simpson distribution");
+        ImGui::EndTabItem();
+    }
 }
