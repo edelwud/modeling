@@ -7,6 +7,12 @@ DistributionHistogram::DistributionHistogram()
 };
 
 void DistributionHistogram::update() {
-    RenderUniformHistogram();
+    RenderExponentialHistogram();
+    RenderGammaHistogram();
+    RenderGaussHistogram();
+    RenderMaxTriangleHistogram();
+    RenderMinTriangleHistogram();
     RenderRandomHistogram();
+    RenderSimpsonHistogram();
+    RenderUniformHistogram();
 }
