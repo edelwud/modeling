@@ -3,7 +3,7 @@
 #include <numeric>
 
 std::vector<int> HistogramUtils::GenerateXPositions(int length, int offset,
-                                                      int period) {
+                                                    int period) {
     int currentPosition = offset;
     std::vector<int> positions(length);
     std::generate(positions.begin(), positions.end(),
@@ -15,7 +15,7 @@ std::vector<int> HistogramUtils::GenerateXPositions(int length, int offset,
 }
 
 int HistogramUtils::GetRandomValuesCount(std::vector<double> &sequence,
-                                           double from, double to) {
+                                         double from, double to) {
     int result = 0;
     for (auto x : sequence)
         if (x >= from && x < to)
