@@ -23,7 +23,7 @@ void RandomHistogram::update() {
     ImGui::InputInt("r0", &r0);
     ImGui::InputInt("length", &sequenceLength);
     if (ImGui::Button("Apply"))
-        SetRandomParameters(a, m, r0, sequenceLength, 50, 0, 1);
+        SetRandomParameters(a, m, r0, sequenceLength, 20, 0, 1);
     ImGui::Text("Period: %d;\nAperiodic interval: %d;\nExpected value: %lf;", period, aperiodicInterval, mean);
     ImGui::EndChild();
 
