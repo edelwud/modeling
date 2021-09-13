@@ -2,7 +2,7 @@
 
 #include <numeric>
 
-std::vector<int> Histogram::Utils::GenerateXPositions(int length, int offset,
+std::vector<int> HistogramUtils::GenerateXPositions(int length, int offset,
                                                       int period) {
     int currentPosition = offset;
     std::vector<int> positions(length);
@@ -14,7 +14,7 @@ std::vector<int> Histogram::Utils::GenerateXPositions(int length, int offset,
     return positions;
 }
 
-int Histogram::Utils::GetRandomValuesCount(std::vector<double> &sequence,
+int HistogramUtils::GetRandomValuesCount(std::vector<double> &sequence,
                                            double from, double to) {
     int result = 0;
     for (auto x : sequence)
@@ -23,7 +23,7 @@ int Histogram::Utils::GetRandomValuesCount(std::vector<double> &sequence,
     return result;
 }
 
-std::vector<int> Histogram::Utils::GetXRandomValuesCount(
+std::vector<int> HistogramUtils::GetXRandomValuesCount(
     std::vector<double> &sequence, unsigned int count, double from, double to) {
     std::vector<int> result(count);
     auto delta = to - from;

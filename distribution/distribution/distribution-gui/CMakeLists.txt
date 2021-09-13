@@ -6,5 +6,5 @@ create_module(
         TYPE executable
         VERSION 0.0.1
         DESCRIPTION Random GUI visualization
-        DEPENDENCIES mahi::gui random
+        DEPENDENCIES mahi::gui distribution
 )

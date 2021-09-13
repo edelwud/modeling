@@ -2,9 +2,7 @@
 
 #include <vector>
 
-namespace Histogram {
-
-class Utils {
+class HistogramUtils {
   public:
     static std::vector<int> GenerateXPositions(int length, int offset,
                                                int period);
@@ -14,5 +12,3 @@ class Utils {
                                                   unsigned int count,
                                                   double from, double to);
 };
-
-} // namespace Histogram
