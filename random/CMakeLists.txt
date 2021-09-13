@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 set(CLANG_TIDY YES)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_TOOLCHAIN_FILE ~/.local/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 include(cmake/main.cmake)
 
@@ -11,6 +12,6 @@ project(${ADDON_APP}
         HOMEPAGE_URL "https://github.com/edelwud/modeling"
         LANGUAGES CXX)
 
-conan_cmake_run(REQUIRES gtest/cci.20210126 BASIC_SETUP CMAKE_TARGETS)
+find_package(GTest CONFIG REQUIRED)
 
 initialize_project()
