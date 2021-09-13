@@ -7,7 +7,7 @@ DistributionHistogram::DistributionHistogram()
 };
 
 void DistributionHistogram::update() {
-    ImGui::SetNextWindowPos(ImVec2(0,0), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
     ImGui::SetNextWindowSize(get_window_size(), ImGuiCond_Always);
     ImGui::Begin("Histogram");
     if (ImGui::BeginTabBar("Distribution")) {

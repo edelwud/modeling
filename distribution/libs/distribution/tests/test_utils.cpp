@@ -7,8 +7,7 @@
 
 TEST(utils, CalculatingMeanTest) {
     auto sequence = Distribution::GenerateRandomDistribution(SEQUENCE_LENGTH);
-    std::cout << std::setprecision(3)
-              << Utils::CalculateSequenceMean(sequence);
+    std::cout << std::setprecision(3) << Utils::CalculateSequenceMean(sequence);
 }
 
 TEST(utils, CalculatingDevianceTest) {

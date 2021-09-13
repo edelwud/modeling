@@ -21,8 +21,8 @@ void GammaDistributionHistogram::RenderGammaHistogram() {
         ImPlot::FitNextPlotAxes(true, true, true, true);
         if (ImPlot::BeginPlot("##GammaHistogram", nullptr, nullptr,
                               ImVec2(-1, -1), ImPlotFlags_NoChild)) {
-            ImPlot::PlotBars("Gamma Levels", positions.data(),
-                             values.data(), positions.size(), 0.5f);
+            ImPlot::PlotBars("Gamma Levels", positions.data(), values.data(),
+                             positions.size(), 0.5f);
             ImPlot::EndPlot();
         }
 

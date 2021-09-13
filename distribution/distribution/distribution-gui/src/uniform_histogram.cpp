@@ -21,8 +21,8 @@ void UniformDistributionHistogram::RenderUniformHistogram() {
         ImPlot::FitNextPlotAxes(true, true, true, true);
         if (ImPlot::BeginPlot("##UniformHistogram", nullptr, nullptr,
                               ImVec2(-1, -1), ImPlotFlags_NoChild)) {
-            ImPlot::PlotBars("Uniform Levels", positions.data(),
-                             values.data(), positions.size(), 0.5f);
+            ImPlot::PlotBars("Uniform Levels", positions.data(), values.data(),
+                             positions.size(), 0.5f);
             ImPlot::EndPlot();
         }
         ImGui::EndTabItem();

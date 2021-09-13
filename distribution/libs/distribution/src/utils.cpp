@@ -10,7 +10,7 @@ double Utils::CalculateSequenceMean(std::vector<double> &sequence) {
 }
 
 double Utils::CalculateSequenceDeviation(std::vector<double> &sequence,
-                                               double mean) {
+                                         double mean) {
     int length = sequence.size();
     std::vector<double> diff(length);
     std::transform(sequence.begin(), sequence.end(), diff.begin(),
@@ -21,7 +21,7 @@ double Utils::CalculateSequenceDeviation(std::vector<double> &sequence,
 }
 
 double Utils::CalculateSequenceVariance(std::vector<double> &sequence,
-                                              double mean) {
+                                        double mean) {
     auto deviation = CalculateSequenceDeviation(sequence, mean);
     return deviation * deviation;
 }
