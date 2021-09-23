@@ -23,7 +23,7 @@ void GaussDistributionHistogram::RenderGaussHistogram() {
         if (ImPlot::BeginPlot("##GaussHistogram", nullptr, nullptr,
                               ImVec2(-1, -1), ImPlotFlags_NoChild)) {
             ImPlot::PlotBars("Gauss Levels", positions.data(), values.data(),
-                             positions.size(), 0.5f);
+                             positions.size(), 0.9f);
             ImPlot::EndPlot();
         }
 
@@ -33,10 +33,14 @@ void GaussDistributionHistogram::RenderGaussHistogram() {
 
 void GaussDistributionHistogram::calculate() {
     sequence = Distribution::GenerateGaussDistribution(seqMean, std, n, length);
+
+    auto max = *std::max_element(sequence.begin(), sequence.end());
+    auto min = *std::min_element(sequence.begin(), sequence.end());
+
     mean = Utils::CalculateSequenceMean(sequence);
     variance = Utils::CalculateSequenceVariance(sequence, mean);
     deviation = Utils::CalculateSequenceDeviation(sequence, mean);
 
-    positions = HistogramUtils::GenerateXPositions(20, 0, 1);
-    values = HistogramUtils::GetXRandomValuesCount(sequence, 20, 0, 1);
+    positions = HistogramUtils::GenerateXPositions(100, 0, 1);
+    values = HistogramUtils::GetXRandomValuesCount(sequence, 100, min, max);
 }

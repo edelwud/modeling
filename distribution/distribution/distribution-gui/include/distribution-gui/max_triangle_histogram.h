@@ -15,8 +15,8 @@ class MaxTriangleDistributionHistogram {
     std::vector<double> sequence;
 
   private:
-    int a = 0;
-    int b = 0;
+    double a = 0;
+    double b = 0;
     int length = 0;
 
   private:

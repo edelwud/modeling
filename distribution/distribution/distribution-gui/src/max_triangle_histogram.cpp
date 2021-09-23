@@ -9,8 +9,8 @@
 
 void MaxTriangleDistributionHistogram::RenderMaxTriangleHistogram() {
     if (ImGui::BeginTabItem("MaxTriangle")) {
-        ImGui::InputInt("a", &a);
-        ImGui::InputInt("b", &b);
+        ImGui::InputDouble("a", &a);
+        ImGui::InputDouble("b", &b);
         ImGui::InputInt("length", &length);
         if (ImGui::Button("Apply"))
             calculate();
@@ -22,7 +22,7 @@ void MaxTriangleDistributionHistogram::RenderMaxTriangleHistogram() {
         if (ImPlot::BeginPlot("##MaxTriangleHistogram", nullptr, nullptr,
                               ImVec2(-1, -1), ImPlotFlags_NoChild)) {
             ImPlot::PlotBars("MaxTriangle Levels", positions.data(),
-                             values.data(), positions.size(), 0.5f);
+                             values.data(), positions.size(), 0.9f);
             ImPlot::EndPlot();
         }
 
@@ -32,10 +32,14 @@ void MaxTriangleDistributionHistogram::RenderMaxTriangleHistogram() {
 
 void MaxTriangleDistributionHistogram::calculate() {
     sequence = Distribution::GenerateMaxTriangleDistribution(a, b, length);
+
+    auto max = *std::max_element(sequence.begin(), sequence.end()) + 1;
+    auto min = *std::min_element(sequence.begin(), sequence.end()) - 1;
+
     mean = Utils::CalculateSequenceMean(sequence);
     variance = Utils::CalculateSequenceVariance(sequence, mean);
     deviation = Utils::CalculateSequenceDeviation(sequence, mean);
 
-    positions = HistogramUtils::GenerateXPositions(20, 0, 1);
-    values = HistogramUtils::GetXRandomValuesCount(sequence, 20, 0, 1);
+    positions = HistogramUtils::GenerateXPositions(100, 0, 1);
+    values = HistogramUtils::GetXRandomValuesCount(sequence, 100, min, max);
 }

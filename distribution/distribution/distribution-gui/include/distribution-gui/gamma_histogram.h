@@ -15,9 +15,9 @@ class GammaDistributionHistogram {
     std::vector<double> sequence;
 
   private:
-    int eta = 0;
-    int length = 0;
+    double eta = 0;
     double param = 0;
+    int length = 0;
 
   private:
     double mean = 0;

@@ -17,7 +17,7 @@ std::vector<double> Distribution::GenerateRandomDistribution(int length) {
     return sequence;
 }
 
-std::vector<double> Distribution::GenerateUniformDistribution(int a, int b,
+std::vector<double> Distribution::GenerateUniformDistribution(double a, double b,
                                                               int length) {
     auto sequence = GenerateRandomDistribution(length);
     std::vector<double> uniformSequence(length);
@@ -68,7 +68,7 @@ Distribution::GenerateGammaDistribution(int eta, double param, int length) {
     return gammaSequence;
 }
 
-std::vector<double> Distribution::GenerateMinTriangleDistribution(int a, int b,
+std::vector<double> Distribution::GenerateMinTriangleDistribution(double a, double b,
                                                                   int length) {
     std::vector<double> minTriangleSequence(length);
 
@@ -82,7 +82,7 @@ std::vector<double> Distribution::GenerateMinTriangleDistribution(int a, int b,
     return minTriangleSequence;
 }
 
-std::vector<double> Distribution::GenerateMaxTriangleDistribution(int a, int b,
+std::vector<double> Distribution::GenerateMaxTriangleDistribution(double a, double b,
                                                                   int length) {
     std::vector<double> maxTriangleSequence(length);
 
@@ -96,7 +96,7 @@ std::vector<double> Distribution::GenerateMaxTriangleDistribution(int a, int b,
     return maxTriangleSequence;
 }
 
-std::vector<double> Distribution::GenerateSimpsonDistribution(int a, int b,
+std::vector<double> Distribution::GenerateSimpsonDistribution(double a, double b,
                                                               int length) {
     auto uniOne = GenerateUniformDistribution(a / 2, b / 2, length);
     auto uniTwo = GenerateUniformDistribution(a / 2, b / 2, length);
