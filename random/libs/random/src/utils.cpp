@@ -44,21 +44,23 @@ Rand::Utils::CalculateSequenceImplicitCriteria(std::vector<double> &sequence) {
 }
 
 int Rand::Utils::CalculateSequencePeriod(std::vector<double> &sequence) {
-    auto startElement = sequence.front();
-    auto it = std::next(sequence.begin());
-    for (int period = 1; it != sequence.end(); it = std::next(it), period++) {
-        auto currentElement = *it;
-        if (startElement == currentElement)
-            return period;
+    auto last = sequence.back();
+    auto size = sequence.size();
+    for (auto it = std::next(sequence.rbegin()); it != sequence.rend(); ++it) {
+        if (*it == last) {
+            return int(size - std::distance(sequence.rbegin(), it));
+        }
     }
-    return sequence.size();
+    return 1;
 }
 
 int Rand::Utils::CalculateSequenceAperiodicInterval(
     std::vector<double> &sequence, int period) {
     auto aperiodicInterval = 0;
+    auto size = sequence.size();
 
-    while (sequence[aperiodicInterval] != sequence[aperiodicInterval + period])
+    while ((sequence[aperiodicInterval] != sequence[aperiodicInterval + period])
+           && aperiodicInterval + period > size)
         aperiodicInterval++;
 
     return aperiodicInterval + period;

@@ -33,7 +33,7 @@ void RandomHistogram::update() {
 
     if (ImGui::BeginTabBar("Plots")) {
         if (ImGui::BeginTabItem("Histogram")) {
-            ImPlot::SetNextPlotLimits(-1, length, 0, maxY);
+            ImPlot::FitNextPlotAxes(true, true, true, true);
             if (ImPlot::BeginPlot("##Histogram", nullptr, nullptr, ImVec2(-1, -1),
                                   ImPlotFlags_NoChild)) {
                 ImPlot::PlotBars("Level", positions.data(), values.data(), length,
