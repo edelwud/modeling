@@ -1,0 +1,2 @@
+# modeling
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/780cae7ab9b947e3bfb601228d85e4e0)](https://app.codacy.com/gh/edelwud/modeling?utm_source=github.com&utm_medium=referral&utm_content=edelwud/modeling&utm_campaign=Badge_Grade_Settings)
