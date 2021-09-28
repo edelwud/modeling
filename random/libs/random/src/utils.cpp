@@ -45,10 +45,9 @@ Rand::Utils::CalculateSequenceImplicitCriteria(std::vector<double> &sequence) {
 
 int Rand::Utils::CalculateSequencePeriod(std::vector<double> &sequence) {
     auto last = sequence.back();
-    auto size = sequence.size();
     for (auto it = std::next(sequence.rbegin()); it != sequence.rend(); ++it) {
         if (*it == last) {
-            return int(size - std::distance(sequence.rbegin(), it));
+            return (int)std::distance(sequence.rbegin(), it);
         }
     }
     return 1;
