@@ -28,7 +28,7 @@ func Distribute(sequence []float64, intervals int) ([]float64, []giu.PlotTicker)
 	period := delta / float64(intervals)
 
 	dist := make([]float64, intervals+1)
-	labels := make([]giu.PlotTicker, intervals+1)
+	labels := make([]giu.PlotTicker, intervals*2)
 	j := 0
 
 	for i := min; i <= max; i += period {

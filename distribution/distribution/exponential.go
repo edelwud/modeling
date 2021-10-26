@@ -4,7 +4,7 @@ import "math"
 
 type Exponential struct {
 	length int
-	param  float64
+	lambda float64
 }
 
 func (e Exponential) Generate() []float64 {
@@ -14,15 +14,15 @@ func (e Exponential) Generate() []float64 {
 	exp := make([]float64, e.length)
 
 	for i := range exp {
-		exp[i] = -1 / e.param * math.Log(rand[i])
+		exp[i] = -1 / e.lambda * math.Log(rand[i])
 	}
 
 	return exp
 }
 
-func CreateExponentialDistribution(param float64, length int) Distribution {
+func CreateExponentialDistribution(lambda float64, length int) Distribution {
 	return &Exponential{
 		length: length,
-		param:  param,
+		lambda: lambda,
 	}
 }

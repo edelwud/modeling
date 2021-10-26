@@ -5,7 +5,7 @@ import "math"
 type Gamma struct {
 	eta    int
 	length int
-	param  float64
+	lambda float64
 }
 
 func (g Gamma) Generate() []float64 {
@@ -18,16 +18,16 @@ func (g Gamma) Generate() []float64 {
 		for j := range randDist {
 			total *= randDist[j]
 		}
-		gamma[i] = -1 / g.param * math.Log(total)
+		gamma[i] = -1 / g.lambda * math.Log(total)
 	}
 
 	return gamma
 }
 
-func CreateGammaDistribution(eta int, param float64, length int) Distribution {
+func CreateGammaDistribution(eta int, lambda float64, length int) Distribution {
 	return &Gamma{
 		eta:    eta,
 		length: length,
-		param:  param,
+		lambda: lambda,
 	}
 }
