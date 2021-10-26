@@ -2,6 +2,7 @@ package screens
 
 import (
 	"distribution/distribution"
+	"distribution/utils"
 	"github.com/AllenDang/giu"
 )
 
@@ -36,7 +37,9 @@ func gammaInputs() giu.Widget {
 func Gamma() *giu.TabItemWidget {
 	gammaPlot := giu.Plot("Gamma distribution")
 	gammaPlot.Size(-1, -1)
-	gammaPlotBar := giu.PlotBar("Gamma", gammaSequence)
+	seq, ticks := utils.Distribute(gammaSequence, 25)
+	gammaPlotBar := giu.PlotBar("Gamma", seq)
+	gammaPlot.XTicks(ticks, false)
 	gammaPlot.Plots(gammaPlotBar)
 
 	item := giu.TabItem("Gamma")

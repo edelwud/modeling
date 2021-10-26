@@ -2,6 +2,7 @@ package screens
 
 import (
 	"distribution/distribution"
+	"distribution/utils"
 	"github.com/AllenDang/giu"
 )
 
@@ -41,7 +42,9 @@ func gaussInputs() giu.Widget {
 func Gaussian() *giu.TabItemWidget {
 	gaussPlot := giu.Plot("Gaussian distribution")
 	gaussPlot.Size(-1, -1)
-	gaussPlotBar := giu.PlotBar("Gaussian", gaussSequence)
+	seq, ticks := utils.Distribute(gaussSequence, 25)
+	gaussPlotBar := giu.PlotBar("Gaussian", seq)
+	gaussPlot.XTicks(ticks, false)
 	gaussPlot.Plots(gaussPlotBar)
 
 	item := giu.TabItem("Gaussian")

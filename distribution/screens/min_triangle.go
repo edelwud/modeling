@@ -2,6 +2,7 @@ package screens
 
 import (
 	"distribution/distribution"
+	"distribution/utils"
 	"github.com/AllenDang/giu"
 )
 
@@ -36,7 +37,9 @@ func minTriangleInputs() giu.Widget {
 func MinTriangle() *giu.TabItemWidget {
 	minTrianglePlot := giu.Plot("Min triangle distribution")
 	minTrianglePlot.Size(-1, -1)
-	minTrianglePlotBar := giu.PlotBar("Min triangle", minTriangleSequence)
+	seq, ticks := utils.Distribute(minTriangleSequence, 25)
+	minTrianglePlotBar := giu.PlotBar("Min triangle", seq)
+	minTrianglePlot.XTicks(ticks, false)
 	minTrianglePlot.Plots(minTrianglePlotBar)
 
 	item := giu.TabItem("Min triangle")

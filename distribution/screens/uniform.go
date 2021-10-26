@@ -2,6 +2,7 @@ package screens
 
 import (
 	"distribution/distribution"
+	"distribution/utils"
 	"github.com/AllenDang/giu"
 )
 
@@ -36,7 +37,9 @@ func uniformInputs() giu.Widget {
 func Uniform() *giu.TabItemWidget {
 	uniformPlot := giu.Plot("Uniform distribution")
 	uniformPlot.Size(-1, -1)
-	uniformPlotBar := giu.PlotBar("Uniform", uniformSequence)
+	seq, ticks := utils.Distribute(uniformSequence, 25)
+	uniformPlotBar := giu.PlotBar("Uniform", seq)
+	uniformPlot.XTicks(ticks, false)
 	uniformPlot.Plots(uniformPlotBar)
 
 	item := giu.TabItem("Uniform")

@@ -2,6 +2,7 @@ package screens
 
 import (
 	"distribution/distribution"
+	"distribution/utils"
 	"github.com/AllenDang/giu"
 )
 
@@ -31,7 +32,9 @@ func expoInputs() giu.Widget {
 func Exponential() *giu.TabItemWidget {
 	expoPlot := giu.Plot("Exponential distribution")
 	expoPlot.Size(-1, -1)
-	expoPlotBar := giu.PlotBar("Exponential", expoSequence)
+	seq, ticks := utils.Distribute(expoSequence, 25)
+	expoPlotBar := giu.PlotBar("Exponential", seq)
+	expoPlot.XTicks(ticks, false)
 	expoPlot.Plots(expoPlotBar)
 
 	item := giu.TabItem("Exponential")

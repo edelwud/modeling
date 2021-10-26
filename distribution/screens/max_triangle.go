@@ -2,6 +2,7 @@ package screens
 
 import (
 	"distribution/distribution"
+	"distribution/utils"
 	"github.com/AllenDang/giu"
 )
 
@@ -36,7 +37,9 @@ func maxTriangleInputs() giu.Widget {
 func MaxTriangle() *giu.TabItemWidget {
 	maxTrianglePlot := giu.Plot("Max triangle distribution")
 	maxTrianglePlot.Size(-1, -1)
-	maxTrianglePlotBar := giu.PlotBar("Max triangle", maxTriangleSequence)
+	seq, ticks := utils.Distribute(maxTriangleSequence, 25)
+	maxTrianglePlotBar := giu.PlotBar("Max triangle", seq)
+	maxTrianglePlot.XTicks(ticks, false)
 	maxTrianglePlot.Plots(maxTrianglePlotBar)
 
 	item := giu.TabItem("Max triangle")

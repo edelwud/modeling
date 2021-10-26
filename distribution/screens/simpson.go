@@ -2,6 +2,7 @@ package screens
 
 import (
 	"distribution/distribution"
+	"distribution/utils"
 	"github.com/AllenDang/giu"
 )
 
@@ -36,7 +37,9 @@ func simpsonInputs() giu.Widget {
 func Simpson() *giu.TabItemWidget {
 	simpsonPlot := giu.Plot("Simpson distribution")
 	simpsonPlot.Size(-1, -1)
-	simpsonPlotBar := giu.PlotBar("Simpson", simpsonSequence)
+	seq, ticks := utils.Distribute(simpsonSequence, 25)
+	simpsonPlotBar := giu.PlotBar("Simpson", seq)
+	simpsonPlot.XTicks(ticks, false)
 	simpsonPlot.Plots(simpsonPlotBar)
 
 	item := giu.TabItem("Simpson")
