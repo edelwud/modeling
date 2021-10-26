@@ -1,2 +1,0 @@
-add_subdirectory(distribution)
-add_subdirectory(random)
