@@ -6,17 +6,26 @@ import (
 )
 
 var (
-	minTriangleA        = float32(1.0)
-	minTriangleB        = float32(1)
+	minTriangleA        = float32(2.0)
+	minTriangleB        = float32(1.0)
 	minTriangleLength   = int32(1000)
 	minTriangleSequence []float64
 )
 
 func minTriangleInputs() giu.Widget {
 	return giu.Column(
-		giu.InputFloat("A", &minTriangleA),
-		giu.InputFloat("B", &minTriangleB),
-		giu.InputInt(&minTriangleLength),
+		giu.Row(
+			giu.Label("A"),
+			giu.InputFloat("A", &minTriangleA),
+		),
+		giu.Row(
+			giu.Label("B"),
+			giu.InputFloat("B", &minTriangleB),
+		),
+		giu.Row(
+			giu.Label("Length"),
+			giu.InputInt(&minTriangleLength),
+		),
 		giu.Button("Calculate").OnClick(func() {
 			minTriangle := distribution.CreateMinTriangleDistribution(float64(minTriangleA), float64(minTriangleB), int(minTriangleLength))
 			minTriangleSequence = minTriangle.Generate()

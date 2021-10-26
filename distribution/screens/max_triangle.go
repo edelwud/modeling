@@ -6,17 +6,26 @@ import (
 )
 
 var (
-	maxTriangleA        = float32(1.0)
-	maxTriangleB        = float32(1)
+	maxTriangleA        = float32(2.0)
+	maxTriangleB        = float32(1.0)
 	maxTriangleLength   = int32(1000)
 	maxTriangleSequence []float64
 )
 
 func maxTriangleInputs() giu.Widget {
 	return giu.Column(
-		giu.InputFloat("A", &maxTriangleA),
-		giu.InputFloat("B", &maxTriangleB),
-		giu.InputInt(&maxTriangleLength),
+		giu.Row(
+			giu.Label("A"),
+			giu.InputFloat("A", &maxTriangleA),
+		),
+		giu.Row(
+			giu.Label("B"),
+			giu.InputFloat("B", &maxTriangleB),
+		),
+		giu.Row(
+			giu.Label("Length"),
+			giu.InputInt(&maxTriangleLength),
+		),
 		giu.Button("Calculate").OnClick(func() {
 			maxTriangle := distribution.CreateMaxTriangleDistribution(float64(maxTriangleA), float64(maxTriangleB), int(maxTriangleLength))
 			maxTriangleSequence = maxTriangle.Generate()

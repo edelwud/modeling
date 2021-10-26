@@ -13,8 +13,14 @@ var (
 
 func expoInputs() giu.Widget {
 	return giu.Column(
-		giu.InputFloat("parameter", &expoParam),
-		giu.InputInt(&expoLength),
+		giu.Row(
+			giu.Label("Parameter"),
+			giu.InputFloat("parameter", &expoParam),
+		),
+		giu.Row(
+			giu.Label("Length"),
+			giu.InputInt(&expoLength),
+		),
 		giu.Button("Calculate").OnClick(func() {
 			expo := distribution.CreateExponentialDistribution(float64(expoParam), int(expoLength))
 			expoSequence = expo.Generate()

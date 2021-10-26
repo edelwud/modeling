@@ -14,9 +14,18 @@ var (
 
 func gammaInputs() giu.Widget {
 	return giu.Column(
-		giu.InputInt(&gammaEta),
-		giu.InputFloat("parameter", &gammaParam),
-		giu.InputInt(&gammaLength),
+		giu.Row(
+			giu.Label("Eta"),
+			giu.InputInt(&gammaEta),
+		),
+		giu.Row(
+			giu.Label("Parameter"),
+			giu.InputFloat("parameter", &gammaParam),
+		),
+		giu.Row(
+			giu.Label("Length"),
+			giu.InputInt(&gammaLength),
+		),
 		giu.Button("Calculate").OnClick(func() {
 			gamma := distribution.CreateGammaDistribution(int(gammaEta), float64(gammaParam), int(gammaLength))
 			gammaSequence = gamma.Generate()

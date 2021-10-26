@@ -6,17 +6,26 @@ import (
 )
 
 var (
-	uniformA        = float32(1.0)
-	uniformB        = float32(1)
+	uniformA        = float32(2.0)
+	uniformB        = float32(1.0)
 	uniformLength   = int32(1000)
 	uniformSequence []float64
 )
 
 func uniformInputs() giu.Widget {
 	return giu.Column(
-		giu.InputFloat("A", &uniformA),
-		giu.InputFloat("B", &uniformB),
-		giu.InputInt(&uniformLength),
+		giu.Row(
+			giu.Label("A"),
+			giu.InputFloat("A", &uniformA),
+		),
+		giu.Row(
+			giu.Label("B"),
+			giu.InputFloat("B", &uniformB),
+		),
+		giu.Row(
+			giu.Label("Length"),
+			giu.InputInt(&uniformLength),
+		),
 		giu.Button("Calculate").OnClick(func() {
 			uniform := distribution.CreateUniformDistribution(float64(uniformA), float64(uniformB), int(uniformLength))
 			uniformSequence = uniform.Generate()
