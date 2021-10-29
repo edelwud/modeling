@@ -2,7 +2,10 @@ module distribution
 
 go 1.17
 
-require github.com/AllenDang/giu v0.5.6
+require (
+	github.com/AllenDang/giu v0.5.6
+	gonum.org/v1/gonum v0.9.3
+)
 
 require (
 	github.com/AllenDang/go-findfont v0.0.0-20200702051237-9f180485aeb8 // indirect

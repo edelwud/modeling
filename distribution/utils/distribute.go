@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"github.com/AllenDang/giu"
+	"gonum.org/v1/gonum/stat"
 	"math"
 )
 
@@ -54,19 +55,9 @@ func Mean(sequence []float64) float64 {
 }
 
 func Deviation(sequence []float64) float64 {
-	mean := Mean(sequence)
-	diff := make([]float64, len(sequence))
-	for i, value := range sequence {
-		diff[i] = value - mean
-	}
-	sum := 0.0
-	for _, value := range diff {
-		sum += value
-	}
-	return math.Sqrt(sum / float64(len(sequence)))
+	return stat.StdDev(sequence, nil)
 }
 
 func Variance(sequence []float64) float64 {
-	deviation := Deviation(sequence)
-	return deviation * deviation
+	return stat.Variance(sequence, nil)
 }
