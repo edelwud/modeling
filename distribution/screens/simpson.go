@@ -3,14 +3,18 @@ package screens
 import (
 	"distribution/distribution"
 	"distribution/utils"
+	"fmt"
 	"github.com/AllenDang/giu"
 )
 
 var (
-	simpsonA        = float32(2.0)
-	simpsonB        = float32(1.0)
-	simpsonLength   = int32(1000)
-	simpsonSequence []float64
+	simpsonMean      = float32(0.0)
+	simpsonDeviation = float32(0.0)
+	simpsonVariance  = float32(0.0)
+	simpsonA         = float32(2.0)
+	simpsonB         = float32(1.0)
+	simpsonLength    = int32(100000)
+	simpsonSequence  []float64
 )
 
 func simpsonInputs() giu.Widget {
@@ -30,7 +34,13 @@ func simpsonInputs() giu.Widget {
 		giu.Button("Calculate").OnClick(func() {
 			simpson := distribution.CreateSimpsonDistribution(float64(simpsonA), float64(simpsonB), int(simpsonLength))
 			simpsonSequence = simpson.Generate()
+			simpsonMean = float32(utils.Mean(simpsonSequence))
+			simpsonDeviation = float32(utils.Deviation(simpsonSequence))
+			simpsonVariance = float32(utils.Variance(simpsonSequence))
 		}),
+		giu.Row(giu.Label("Mean: "+fmt.Sprintf("%.2f", simpsonMean))),
+		giu.Row(giu.Label("Deviation: "+fmt.Sprintf("%.2f", simpsonDeviation))),
+		giu.Row(giu.Label("Variance: "+fmt.Sprintf("%.2f", simpsonVariance))),
 	)
 }
 

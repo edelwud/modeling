@@ -3,14 +3,18 @@ package screens
 import (
 	"distribution/distribution"
 	"distribution/utils"
+	"fmt"
 	"github.com/AllenDang/giu"
 )
 
 var (
-	minTriangleA        = float32(2.0)
-	minTriangleB        = float32(1.0)
-	minTriangleLength   = int32(1000)
-	minTriangleSequence []float64
+	minTriangleMean      = float32(0.0)
+	minTriangleDeviation = float32(0.0)
+	minTriangleVariance  = float32(0.0)
+	minTriangleA         = float32(1.0)
+	minTriangleB         = float32(2.0)
+	minTriangleLength    = int32(100000)
+	minTriangleSequence  []float64
 )
 
 func minTriangleInputs() giu.Widget {
@@ -30,7 +34,13 @@ func minTriangleInputs() giu.Widget {
 		giu.Button("Calculate").OnClick(func() {
 			minTriangle := distribution.CreateMinTriangleDistribution(float64(minTriangleA), float64(minTriangleB), int(minTriangleLength))
 			minTriangleSequence = minTriangle.Generate()
+			minTriangleMean = float32(utils.Mean(minTriangleSequence))
+			minTriangleDeviation = float32(utils.Deviation(minTriangleSequence))
+			minTriangleVariance = float32(utils.Variance(minTriangleSequence))
 		}),
+		giu.Row(giu.Label("Mean: "+fmt.Sprintf("%.2f", minTriangleMean))),
+		giu.Row(giu.Label("Deviation: "+fmt.Sprintf("%.2f", minTriangleDeviation))),
+		giu.Row(giu.Label("Variance: "+fmt.Sprintf("%.2f", minTriangleVariance))),
 	)
 }
 

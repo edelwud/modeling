@@ -3,15 +3,19 @@ package screens
 import (
 	"distribution/distribution"
 	"distribution/utils"
+	"fmt"
 	"github.com/AllenDang/giu"
 )
 
 var (
-	gaussMean     = float32(1.0)
-	gaussStd      = float32(1.0)
-	gaussN        = int32(6)
-	gaussLength   = int32(1000)
-	gaussSequence []float64
+	gaussMean2     = float32(0.0)
+	gaussDeviation = float32(0.0)
+	gaussVariance  = float32(0.0)
+	gaussMean      = float32(1.0)
+	gaussStd       = float32(1.0)
+	gaussN         = int32(6)
+	gaussLength    = int32(100000)
+	gaussSequence  []float64
 )
 
 func gaussInputs() giu.Widget {
@@ -35,7 +39,13 @@ func gaussInputs() giu.Widget {
 		giu.Button("Calculate").OnClick(func() {
 			gauss := distribution.CreateGaussianDistribution(float64(gaussMean), float64(gaussStd), int(gaussN), int(gaussLength))
 			gaussSequence = gauss.Generate()
+			gaussMean2 = float32(utils.Mean(gaussSequence))
+			gaussDeviation = float32(utils.Deviation(gaussSequence))
+			gaussVariance = float32(utils.Variance(gaussSequence))
 		}),
+		giu.Row(giu.Label("Mean: "+fmt.Sprintf("%.2f", gaussMean2))),
+		giu.Row(giu.Label("Deviation: "+fmt.Sprintf("%.2f", gaussDeviation))),
+		giu.Row(giu.Label("Variance: "+fmt.Sprintf("%.2f", gaussVariance))),
 	)
 }
 

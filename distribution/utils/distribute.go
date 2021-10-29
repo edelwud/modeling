@@ -44,3 +44,29 @@ func Distribute(sequence []float64, intervals int) ([]float64, []giu.PlotTicker)
 
 	return dist, labels
 }
+
+func Mean(sequence []float64) float64 {
+	sum := 0.0
+	for _, value := range sequence {
+		sum += value
+	}
+	return sum / float64(len(sequence))
+}
+
+func Deviation(sequence []float64) float64 {
+	mean := Mean(sequence)
+	diff := make([]float64, len(sequence))
+	for i, value := range sequence {
+		diff[i] = value - mean
+	}
+	sum := 0.0
+	for _, value := range diff {
+		sum += value
+	}
+	return math.Sqrt(sum / float64(len(sequence)))
+}
+
+func Variance(sequence []float64) float64 {
+	deviation := Deviation(sequence)
+	return deviation * deviation
+}
