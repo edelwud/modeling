@@ -34,8 +34,8 @@ func expoInputs() giu.Widget {
 			expoVariance = float32(utils.Variance(expoSequence))
 		}),
 		giu.Row(giu.Label("Mean: "+fmt.Sprintf("%.2f", expoMean))),
-		giu.Row(giu.Label("Deviation: "+fmt.Sprintf("%.10f", expoDeviation))),
-		giu.Row(giu.Label("Variance: "+fmt.Sprintf("%.10f", expoVariance))),
+		giu.Row(giu.Label("Deviation: "+fmt.Sprintf("%.2f", expoDeviation))),
+		giu.Row(giu.Label("Variance: "+fmt.Sprintf("%.2f", expoVariance))),
 	)
 }
 
